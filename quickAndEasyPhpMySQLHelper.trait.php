@@ -8,7 +8,7 @@ defined('DBCHARSET') or define("DBCHARSET", "utf8mb4");
 
 trait getData{
         public static function runQuery(string $sql, array $paramData, string $queryType = "SELECT", ?array $sqlSettings = null){
-                if(!empty($sqlSettings) and isset($sqlSettings["dbHost"]) and isset($sqlSettings["dbPort"]) and isset($sqlSettings["dbName"]) and isset($sqlSettings["dbUser"]) and >
+                if(!empty($sqlSettings) and isset($sqlSettings["dbHost"]) and isset($sqlSettings["dbPort"]) and isset($sqlSettings["dbName"]) and isset($sqlSettings["dbUser"]) and isset($sqlSettings["dbPass"]) and isset($sqlSettings["dbCharset"])){
                     $dbHost = $sqlSettings["dbHost"];
                     $dbPort = $sqlSettings["dbPort"];
                     $dbName = $sqlSettings["dbName"];
