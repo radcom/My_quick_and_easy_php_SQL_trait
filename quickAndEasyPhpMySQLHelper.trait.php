@@ -55,7 +55,27 @@ trait getData{
 		        $status = $statement->execute();
 		        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 		    }elseif($queryType === "UPDATE"){
-		    	
+		    	$statement = $databaseHandle->prepare($sql);
+		        foreach($paramData as $data){
+		    		//var_dump($data);
+		        	if (is_integer($data['data'])){
+		    			#echo("int");
+		    			#echo($data['id']);
+		    			#echo($data['data']);
+		    			#var_dump($data);
+		        		$statement->bindValue($data['id'], $data['data'], PDO::PARAM_INT);
+		        	}else{
+		    			#echo("string");
+		    			#echo($data['id']);
+		    			#echo($data['data']);
+		    			#var_dump($data);
+		        		$statement->bindValue($data['id'], $data['data'], PDO::PARAM_STR);
+		    			
+		        	}
+		        }
+		        
+		        $status = $statement->execute();
+		    	$result = $statement->rowCount();
 		    }elseif($queryType === "INSERT"){
 				$statement = $databaseHandle->prepare($sql);
 		        foreach($paramData as $data){
